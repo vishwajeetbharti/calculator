@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,14 +31,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,50 +42,113 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Spacer(),
-          RaisedButton(
-            shape: CircleBorder(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RaisedButton(
+                padding: EdgeInsets.all(15),
+                onPressed: () {},
+                shape: CircleBorder(),
 
-            color: Colors.blue,
-            disabledColor: Colors
-                .blue, //add this to your code            onPressed: () {},
-            child: Icon(
-              Icons.add,
-              size: 100,
-              color: Colors.white,
-            ),
-          ),
-          RaisedButton(
-            shape: CircleBorder(),
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  'AC',
+                  style: TextStyle(fontSize: 60, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                padding: EdgeInsets.all(15),
+                onPressed: () {},
+                shape: CircleBorder(),
 
-            color: Colors.blue,
-            disabledColor: Colors
-                .blue, //add this to your code            onPressed: () {},
-            child: Icon(
-              Icons.remove,
-              size: 100,
-              color: Colors.white,
-            ),
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  'C',
+                  style: TextStyle(fontSize: 60, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '+',
+                  style: TextStyle(fontSize: 100, color: Colors.white),
+                ),
+              ),
+            ],
           ),
-          RaisedButton(
-            shape: CircleBorder(),
-            color: Colors.blue,
-            disabledColor: Colors
-                .blue, //add this to your code            onPressed: () {},
-            child: Text(
-              '/',
-              style: TextStyle(fontSize: 100, color: Colors.white),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '−',
+                  style: TextStyle(fontSize: 100, color: Colors.white),
+                ),
+              ),
+            ],
           ),
-          RaisedButton(
-            shape: CircleBorder(),
-            color: Colors.blue,
-            disabledColor: Colors
-                .blue, //add this to your code            onPressed: () {},
-            child: Text(
-              '×',
-              style: TextStyle(fontSize: 120, color: Colors.white),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '/',
+                  style: TextStyle(fontSize: 100, color: Colors.white),
+                ),
+              ),
+            ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '×',
+                  style: TextStyle(fontSize: 100, color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RaisedButton(
+                onPressed: null,
+                shape: CircleBorder(),
+                color: Colors.blue,
+                disabledColor: Colors.blue,
+                child: Text(
+                  '=',
+                  style: TextStyle(fontSize: 100, color: Colors.white),
+                ),
+              ),
+            ],
+          )
 
           // IconButton(
           //   onPressed: ,
