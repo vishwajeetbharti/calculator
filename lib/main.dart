@@ -42,20 +42,35 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Spacer(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: Container(
+              height: 0.2,
+              width: 500.0,
+              color: (Colors.black),
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              RaisedButton(
-                padding: EdgeInsets.all(15),
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  'AC',
-                  style: TextStyle(fontSize: 60, color: Colors.white),
+              ButtonTheme(
+                minWidth: 170.0,
+                height: (70),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40.0),
+                    side: BorderSide(color: Colors.blue)),
+                child: RaisedButton(
+                  elevation: 10.0,
+                  hoverColor: Colors.green,
+                  color: Colors.blue,
+                  child: Text(
+                    "AC",
+                    style: TextStyle(
+                        fontSize: (80),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {},
                 ),
               ),
               RaisedButton(
@@ -96,6 +111,42 @@ class _MyHomePageState extends State<MyHomePage> {
                 disabledColor: Colors
                     .blue, //add this to your code            onPressed: () {},
                 child: Text(
+                  '7',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '8',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '9',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
                   '−',
                   style: TextStyle(fontSize: 100, color: Colors.white),
                 ),
@@ -105,6 +156,42 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '4',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '5',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '6',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
               RaisedButton(
                 onPressed: () {},
                 shape: CircleBorder(),
@@ -124,6 +211,42 @@ class _MyHomePageState extends State<MyHomePage> {
               RaisedButton(
                 onPressed: () {},
                 shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '1',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '2',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '3',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
+                shape: CircleBorder(),
                 color: Colors.blue,
                 disabledColor: Colors
                     .blue, //add this to your code            onPressed: () {},
@@ -137,8 +260,40 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              ButtonTheme(
+                minWidth: 170.0,
+                height: (70),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40.0),
+                    side: BorderSide(color: Colors.blue)),
+                child: RaisedButton(
+                  elevation: 10.0,
+                  hoverColor: Colors.green,
+                  color: Colors.blue,
+                  child: Text(
+                    "0",
+                    style: TextStyle(
+                        fontSize: (80),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
               RaisedButton(
-                onPressed: null,
+                onPressed: () {},
+                shape: CircleBorder(),
+
+                color: Colors.blue,
+                disabledColor: Colors
+                    .blue, //add this to your code            onPressed: () {},
+                child: Text(
+                  '.',
+                  style: TextStyle(fontSize: 90, color: Colors.white),
+                ),
+              ),
+              RaisedButton(
+                onPressed: () {},
                 shape: CircleBorder(),
                 color: Colors.blue,
                 disabledColor: Colors.blue,
