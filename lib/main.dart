@@ -31,6 +31,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int value1 = 0, value2 = 0;
+  String userInput = ' ';
+  bool operatorButton = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,270 +42,354 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Calculator'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Spacer(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: Container(
-              height: 0.2,
-              width: 500.0,
-              color: (Colors.black),
+          Container(
+            child: Text(
+              userInput,
+              overflow: TextOverflow.clip,
+              textDirection: TextDirection.rtl,
+              style: TextStyle(
+                fontSize: 50,
+              ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ButtonTheme(
-                minWidth: 170.0,
-                height: (70),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
-                    side: BorderSide(color: Colors.blue)),
-                child: RaisedButton(
-                  elevation: 10.0,
-                  hoverColor: Colors.green,
-                  color: Colors.blue,
-                  child: Text(
-                    "AC",
-                    style: TextStyle(
-                        fontSize: (80),
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+          Divider(),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ButtonTheme(
+                  minWidth: 215.0,
+                  height: (70),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                      side: BorderSide(color: Colors.blue)),
+                  child: RaisedButton(
+                    elevation: 10.0,
+                    hoverColor: Colors.green,
+                    color: Colors.blue,
+                    child: Text(
+                      "AC",
+                      style: TextStyle(
+                          fontSize: (80),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        userInput = ' ';
+                      });
+                      value1 = 0;
+                    },
                   ),
-                  onPressed: () {},
                 ),
-              ),
-              RaisedButton(
-                padding: EdgeInsets.all(15),
-                onPressed: () {},
-                shape: CircleBorder(),
+                RaisedButton(
+                  padding: EdgeInsets.all(15),
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput;
+                    });
+                  },
+                  shape: CircleBorder(),
 
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  'C',
-                  style: TextStyle(fontSize: 60, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '+',
-                  style: TextStyle(fontSize: 100, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '7',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '8',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '9',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '−',
-                  style: TextStyle(fontSize: 100, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '4',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '5',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '6',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '/',
-                  style: TextStyle(fontSize: 100, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '1',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '2',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '3',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '×',
-                  style: TextStyle(fontSize: 100, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ButtonTheme(
-                minWidth: 170.0,
-                height: (70),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40.0),
-                    side: BorderSide(color: Colors.blue)),
-                child: RaisedButton(
-                  elevation: 10.0,
-                  hoverColor: Colors.green,
                   color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
                   child: Text(
-                    "0",
-                    style: TextStyle(
-                        fontSize: (80),
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                    'C',
+                    style: TextStyle(fontSize: 60, color: Colors.white),
                   ),
-                  onPressed: () {},
                 ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
+                RaisedButton(
+                  onPressed: () {
+                    operatorButton = true;
+                    value1 = value1 + int.parse(userInput.substring(1));
 
-                color: Colors.blue,
-                disabledColor: Colors
-                    .blue, //add this to your code            onPressed: () {},
-                child: Text(
-                  '.',
-                  style: TextStyle(fontSize: 90, color: Colors.white),
+                    print(value1);
+                    setState(() {
+                      userInput = ' ' + value1.toInt().toString();
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '+',
+                    style: TextStyle(fontSize: 100, color: Colors.white),
+                  ),
                 ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                shape: CircleBorder(),
-                color: Colors.blue,
-                disabledColor: Colors.blue,
-                child: Text(
-                  '=',
-                  style: TextStyle(fontSize: 100, color: Colors.white),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '7';
+                      } else {
+                        userInput = userInput + '7';
+                      }
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '7',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
                 ),
-              ),
-            ],
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '8';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '8',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '9';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '9',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {},
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '−',
+                    style: TextStyle(fontSize: 100, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '4';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '4',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '5';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '5',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '6';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '6',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {},
+                  shape: CircleBorder(),
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '/',
+                    style: TextStyle(fontSize: 100, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '1';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '1',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '2';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '2',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '3';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '3',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {},
+                  shape: CircleBorder(),
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '×',
+                    style: TextStyle(fontSize: 100, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ButtonTheme(
+                  minWidth: 215.0,
+                  height: (70),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                      side: BorderSide(color: Colors.blue)),
+                  child: RaisedButton(
+                    elevation: 10.0,
+                    hoverColor: Colors.green,
+                    color: Colors.blue,
+                    child: Text(
+                      "0",
+                      style: TextStyle(
+                          fontSize: (80),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        userInput = userInput + '0';
+                      });
+                    },
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      userInput = userInput + '.';
+                    });
+                  },
+                  shape: CircleBorder(),
+
+                  color: Colors.blue,
+                  disabledColor: Colors
+                      .blue, //add this to your code            onPressed: () {},
+                  child: Text(
+                    '.',
+                    style: TextStyle(fontSize: 90, color: Colors.white),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {},
+                  shape: CircleBorder(),
+                  color: Colors.blue,
+                  disabledColor: Colors.blue,
+                  child: Text(
+                    '=',
+                    style: TextStyle(fontSize: 100, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
           )
 
           // IconButton(
