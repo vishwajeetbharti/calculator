@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int value1 = 0, value2 = 0;
+  double value1 = 0, value2 = 0;
   String userInput = ' ';
   bool operatorButton = false;
   @override
@@ -106,9 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     operatorButton = true;
-                    value1 = value1 + int.parse(userInput.substring(1));
-
-                    print(value1);
+                    value1 = value1 + double.parse(userInput.substring(1));
                     setState(() {
                       userInput = ' ' + value1.toInt().toString();
                     });
@@ -155,7 +153,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '8';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '8';
+                      } else {
+                        userInput = userInput + '8';
+                      }
                     });
                   },
                   shape: CircleBorder(),
@@ -171,7 +174,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '9';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '9';
+                      } else {
+                        userInput = userInput + '9';
+                      }
                     });
                   },
                   shape: CircleBorder(),
@@ -185,7 +193,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    operatorButton = true;
+                    value1 = int.parse(userInput.substring(1)) - value1;
+                    print(value1);
+                    setState(() {
+                      userInput = value1.toInt().toString();
+                    });
+                  },
                   shape: CircleBorder(),
 
                   color: Colors.blue,
@@ -207,7 +222,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '4';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '4';
+                      } else {
+                        userInput = userInput + '4';
+                      }
                     });
                   },
                   shape: CircleBorder(),
@@ -223,7 +243,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '5';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '5';
+                      } else {
+                        userInput = userInput + '5';
+                      }
                     });
                   },
                   shape: CircleBorder(),
@@ -239,7 +264,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '6';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '6';
+                      } else {
+                        userInput = userInput + '6';
+                      }
                     });
                   },
                   shape: CircleBorder(),
@@ -274,7 +304,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '1';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '1';
+                      } else {
+                        userInput = userInput + '1';
+                      }
                     });
                   },
                   shape: CircleBorder(),
@@ -290,7 +325,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '2';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '2';
+                      } else {
+                        userInput = userInput + '2';
+                      }
                     });
                   },
                   shape: CircleBorder(),
@@ -306,7 +346,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     setState(() {
-                      userInput = userInput + '3';
+                      if (operatorButton) {
+                        operatorButton = false;
+                        userInput = ' ' + '3';
+                      } else {
+                        userInput = userInput + '3';
+                      }
                     });
                   },
                   shape: CircleBorder(),
