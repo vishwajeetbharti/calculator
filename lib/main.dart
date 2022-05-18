@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -31,8 +30,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double value1 = 0, value2 = 0;
-  String userInput = ' ';
+  dynamic value1 = 0, value2 = 0;
+  dynamic opr='';
+  dynamic preopr='';
+  dynamic Finalresult=0;
+  dynamic Result=0;
+  dynamic userInput = ' ';
   bool operatorButton = false;
   @override
   Widget build(BuildContext context) {
@@ -62,10 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ButtonTheme(
-                  minWidth: 215.0,
+                  minWidth: 200.0,
                   height: (70),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0),
+                      borderRadius: BorderRadius.circular(30.0),
                       side: BorderSide(color: Colors.blue)),
                   child: RaisedButton(
                     elevation: 10.0,
@@ -79,19 +82,26 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      setState(() {
-                        userInput = ' ';
+                      // calculation("AC");
+                      // print(userInput);
+                      setState((){
+                        value2=0;
+                        value1=0;
+                        Result='';
+                        Finalresult=0;
+                        opr='';
+                        preopr='';
+                        userInput=' ';
                       });
-                      value1 = 0;
                     },
                   ),
                 ),
                 RaisedButton(
                   padding: EdgeInsets.all(15),
                   onPressed: () {
-                    setState(() {
-                      userInput = userInput;
+                    setState((){
                     });
+                    print(userInput);
                   },
                   shape: CircleBorder(),
 
@@ -99,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   disabledColor: Colors
                       .blue, //add this to your code            onPressed: () {},
                   child: Text(
-                    'C',
+                    '+/-',
                     style: TextStyle(fontSize: 60, color: Colors.white),
                   ),
                 ),
@@ -448,4 +458,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+  //Calculator logic
+
+  void calculation(String btnText){
+    // if(btnText=="AC"){
+    //
+    // }
+    // else if(btnText=='C'){
+    //   // userInput=userInput %(10);
+    // }
+  }
+
 }
