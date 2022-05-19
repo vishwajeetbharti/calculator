@@ -99,9 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   padding: EdgeInsets.all(15),
                   onPressed: () {
-                    setState((){
-                    });
-                    print(userInput);
+                    calculation('+/-');
                   },
                   shape: CircleBorder(),
 
@@ -115,11 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    operatorButton = true;
-                    value1 = value1 + double.parse(userInput.substring(1));
-                    setState(() {
-                      userInput = ' ' + value1.toInt().toString();
-                    });
+                    calculation('+');
                   },
                   shape: CircleBorder(),
 
@@ -141,14 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '7';
-                      } else {
-                        userInput = userInput + '7';
-                      }
-                    });
+                    calculation('7');
                   },
                   shape: CircleBorder(),
 
@@ -162,14 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '8';
-                      } else {
-                        userInput = userInput + '8';
-                      }
-                    });
+                    calculation('8');
                   },
                   shape: CircleBorder(),
 
@@ -183,14 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '9';
-                      } else {
-                        userInput = userInput + '9';
-                      }
-                    });
+                    calculation('9');
                   },
                   shape: CircleBorder(),
 
@@ -204,12 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    operatorButton = true;
-                    value1 = int.parse(userInput.substring(1)) - value1;
-                    print(value1);
-                    setState(() {
-                      userInput = value1.toInt().toString();
-                    });
+                    calculation('-');
                   },
                   shape: CircleBorder(),
 
@@ -231,14 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '4';
-                      } else {
-                        userInput = userInput + '4';
-                      }
-                    });
+                    calculation('4');
                   },
                   shape: CircleBorder(),
 
@@ -252,14 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '5';
-                      } else {
-                        userInput = userInput + '5';
-                      }
-                    });
+                    calculation('5');
                   },
                   shape: CircleBorder(),
 
@@ -273,14 +227,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '6';
-                      } else {
-                        userInput = userInput + '6';
-                      }
-                    });
+                    calculation('6');
+                    // setState(() {
+                    //   if (operatorButton) {
+                    //     operatorButton = false;
+                    //     userInput = ' ' + '6';
+                    //   } else {
+                    //     userInput = userInput + '6';
+                    //   }
+                    // });
                   },
                   shape: CircleBorder(),
 
@@ -293,7 +248,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    calculation('/');
+                  },
                   shape: CircleBorder(),
                   color: Colors.blue,
                   disabledColor: Colors
@@ -313,14 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '1';
-                      } else {
-                        userInput = userInput + '1';
-                      }
-                    });
+                    calculation('1');
                   },
                   shape: CircleBorder(),
 
@@ -334,14 +284,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '2';
-                      } else {
-                        userInput = userInput + '2';
-                      }
-                    });
+                    calculation('2');
                   },
                   shape: CircleBorder(),
 
@@ -355,14 +298,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      if (operatorButton) {
-                        operatorButton = false;
-                        userInput = ' ' + '3';
-                      } else {
-                        userInput = userInput + '3';
-                      }
-                    });
+                    calculation('3');
                   },
                   shape: CircleBorder(),
 
@@ -375,7 +311,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    calculation('×');
+                  },
                   shape: CircleBorder(),
                   color: Colors.blue,
                   disabledColor: Colors
@@ -411,17 +349,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      setState(() {
-                        userInput = userInput + '0';
-                      });
+                     calculation('0');
                     },
                   ),
                 ),
                 RaisedButton(
                   onPressed: () {
-                    setState(() {
-                      userInput = userInput + '.';
-                    });
+                    calculation('.');
                   },
                   shape: CircleBorder(),
 
@@ -434,7 +368,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    calculation('=');
+                  },
                   shape: CircleBorder(),
                   color: Colors.blue,
                   disabledColor: Colors.blue,
@@ -459,14 +395,95 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   //Calculator logic
+  String doesContainDecimal(dynamic result) {
+
+    if(result.toString().contains('.')) {
+      List<String> splitDecimal = result.toString().split('.');
+      if(!(int.parse(splitDecimal[1]) > 0))
+        return result = splitDecimal[0].toString();
+    }
+    return result;
+  }
+
+  String add() {
+    Result = (value1 + value2).toString();
+    value1 = double.parse(Result);
+    return doesContainDecimal(Result);
+  }
+
+  String sub() {
+    Result = (value1 - value2).toString();
+    value1 = double.parse(Result);
+    return doesContainDecimal(Result);
+  }
+  String mul() {
+    Result = (value1 * value2).toString();
+    value1 = double.parse(Result);
+    return doesContainDecimal(Result);
+  }
+  String div() {
+    Result = (value1 / value2).toString();
+    value1 = double.parse(Result);
+    return doesContainDecimal(Result);
+  }
 
   void calculation(String btnText){
-    // if(btnText=="AC"){
-    //
-    // }
-    // else if(btnText=='C'){
-    //   // userInput=userInput %(10);
-    // }
+    if(opr=='='&&btnText=='='){
+      if(preopr=='+')
+        Finalresult=add();
+      else if(preopr=='-')
+        Finalresult=sub();
+      else if(preopr=='×')
+        Finalresult=mul();
+      else if(preopr=='/')
+        Finalresult=div();
+
+     }
+    else if(btnText=='+'||btnText=='-'||btnText=='/'||btnText=='='||btnText=='×'){
+      if(value1==0)
+        {
+          value1=double.parse(Result);
+        }
+      else {
+        value2=double.parse(Result);
+      }
+      if(opr=='+')
+        Finalresult=add();
+      else if(opr=='-')
+        Finalresult=sub();
+      else if(opr=='×')
+        Finalresult=mul();
+      else if(opr=='/')
+        Finalresult=div();
+
+      preopr=opr;
+      opr=btnText;
+      Result='';
+    }
+    else if(btnText=='%'){
+      Result= value1 /100;
+      Finalresult = doesContainDecimal(Result);
+    }
+    else if(btnText=='.'){
+      if(!Result.toString().contains('.')){
+        Result=Result.toString()+'.';
+      }
+      Finalresult= Result;
+    }
+    else if(btnText=='+/-'){
+      Result.toString().startsWith('-') ? Result= Result.toString().substring(1): Result='-'+Result.toString();
+      Finalresult=Result;
+    }
+    else{
+      Result=Result+btnText;
+      Finalresult=Result;
+      print(Finalresult);
+    }
+    setState((){
+      userInput=Finalresult;
+    });
+
+
   }
 
 }
