@@ -475,7 +475,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Finalresult=Result;
     }
     else{
-      Result=Result+btnText;
+      Result=Result + btnText;
       Finalresult=Result;
       print(Finalresult);
     }
