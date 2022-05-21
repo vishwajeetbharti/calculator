@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 void main() {
   runApp(MyApp());
 }
@@ -40,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool operatorButton = false;
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -83,8 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      // calculation("AC");
-                      // print(userInput);
                       setState((){
                         value2=0;
                         value1=0;
@@ -100,7 +98,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   padding: EdgeInsets.all(15),
                   onPressed: () {
-                    calculation('+/-');
+                    if(userInput!=null){
+                      String s = userInput.toString();
+                      s = s.substring(0,s.length-1);
+                      Result=s;
+                      setState((){
+                        userInput=s;
+                      });
+                    }
                   },
                   shape: CircleBorder(),
 
@@ -108,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   disabledColor: Colors
                       .blue, //add this to your code            onPressed: () {},
                   child: Text(
-                    '+/-',
+                    'C',
                     style: TextStyle(fontSize: 60, color: Colors.white),
                   ),
                 ),
@@ -229,14 +234,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 RaisedButton(
                   onPressed: () {
                     calculation('6');
-                    // setState(() {
-                    //   if (operatorButton) {
-                    //     operatorButton = false;
-                    //     userInput = ' ' + '6';
-                    //   } else {
-                    //     userInput = userInput + '6';
-                    //   }
-                    // });
                   },
                   shape: CircleBorder(),
 
@@ -467,18 +464,14 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     else if(btnText=='.'){
       if(!Result.toString().contains('.')){
-        Result=Result.toString()+'.';
+        Result= Result.toString()+'.';
       }
       Finalresult= Result;
-    }
-    else if(btnText=='+/-'){
-      Result.toString().startsWith('-') ? Result= Result.toString().substring(1): Result='-'+Result.toString();
-      Finalresult=Result;
+      print(Finalresult);
     }
     else{
-      Result=Result + btnText;
+      Result=Result+btnText;
       Finalresult=Result;
-      print(Finalresult);
     }
     setState((){
       userInput=Finalresult;
