@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 void main() {
   runApp(MyApp());
 }
@@ -50,15 +51,18 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Spacer(),
           Container(
+
             child: Text(
               userInput,
               overflow: TextOverflow.clip,
+              maxLines: 3,
               textDirection: TextDirection.rtl,
               style: TextStyle(
                 fontSize: 50,
               ),
             ),
           ),
+
           Divider(),
           Padding(
             padding: EdgeInsets.only(left: 10.0, right: 10.0),
@@ -105,6 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState((){
                         userInput=s;
                       });
+                    }
+                    else{
+                      Fluttertoast.showToast(msg: "Cleared");
                     }
                   },
                   shape: CircleBorder(),
