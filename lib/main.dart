@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sizer/sizer.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 void main() {
   runApp(MyApp());
 }
@@ -9,14 +11,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Calculator',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(),
+    return Sizer(
+      builder: (context,orientation,deviceType){
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Calculator',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: MyHomePage(),
+        );
+      }
     );
   }
 }
@@ -40,364 +46,433 @@ class _MyHomePageState extends State<MyHomePage> {
   bool operatorButton = false;
   @override
   Widget build(BuildContext context) {
+    return Sizer(
+      builder: (context,orientation,deviceType) {
+        return Scaffold(
+          appBar: AppBar(
+              title: Text('Calculator'),
+          ),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Spacer(flex:1),
+              Container(
 
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Calculator'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          Spacer(),
-          Container(
-
-            child: Text(
-              userInput,
-              overflow: TextOverflow.clip,
-              maxLines: 3,
-              textDirection: TextDirection.rtl,
-              style: TextStyle(
-                fontSize: 50,
+                child: Text(
+                  userInput,
+                  overflow: TextOverflow.clip,
+                  maxLines: 3,
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                    fontSize: 50,
+                  ),
+                ),
               ),
-            ),
-          ),
 
-          Divider(),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonTheme(
-                  minWidth: 200.0,
-                  height: (70),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      side: BorderSide(color: Colors.blue)),
-                  child: RaisedButton(
-                    elevation: 10.0,
-                    hoverColor: Colors.green,
-                    color: Colors.blue,
-                    child: Text(
-                      "AC",
-                      style: TextStyle(
-                          fontSize: (80),
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+              Divider(
+                height: 10,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ButtonTheme(
+                      minWidth: 190.0,
+                      height: (70),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(color: Colors.black)),
+                      child: RaisedButton(
+                        elevation: 10.0,
+                        hoverColor: Colors.green,
+                        color: Colors.black26,
+                        child: Text(
+                          "AC",
+                          style: TextStyle(
+                              fontSize: (30),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            value2 = 0;
+                            value1 = 0;
+                            Result = '';
+                            Finalresult = 0;
+                            opr = '';
+                            preopr = '';
+                            userInput = ' ';
+                          });
+                          if (userInput == ' ') {
+                            Fluttertoast.showToast(
+                                msg: "Already Cleared",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.TOP,
+                                timeInSecForIosWeb: 3,
+                                backgroundColor: Colors.black26,
+                                textColor: Colors.black,
+                                fontSize: 16.0
+                            );
+                          }
+                        },
+                      ),
                     ),
-                    onPressed: () {
-                      setState((){
-                        value2=0;
-                        value1=0;
-                        Result='';
-                        Finalresult=0;
-                        opr='';
-                        preopr='';
-                        userInput=' ';
-                      });
-                    },
-                  ),
-                ),
-                RaisedButton(
-                  padding: EdgeInsets.all(15),
-                  onPressed: () {
-                    if(userInput!=null){
-                      String s = userInput.toString();
-                      s = s.substring(0,s.length-1);
-                      Result=s;
-                      setState((){
-                        userInput=s;
-                      });
-                    }
-                    else{
-                      Fluttertoast.showToast(msg: "Cleared");
-                    }
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    'C',
-                    style: TextStyle(fontSize: 60, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('+');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '+',
-                    style: TextStyle(fontSize: 100, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    calculation('7');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '7',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('8');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '8',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('9');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '9',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('-');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '−',
-                    style: TextStyle(fontSize: 100, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    calculation('4');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '4',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('5');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '5',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('6');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '6',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('/');
-                  },
-                  shape: CircleBorder(),
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '/',
-                    style: TextStyle(fontSize: 100, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    calculation('1');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '1',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('2');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '2',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('3');
-                  },
-                  shape: CircleBorder(),
-
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '3',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('×');
-                  },
-                  shape: CircleBorder(),
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '×',
-                    style: TextStyle(fontSize: 100, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0, right: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ButtonTheme(
-                  minWidth: 215.0,
-                  height: (70),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40.0),
-                      side: BorderSide(color: Colors.blue)),
-                  child: RaisedButton(
-                    elevation: 10.0,
-                    hoverColor: Colors.green,
-                    color: Colors.blue,
-                    child: Text(
-                      "0",
-                      style: TextStyle(
-                          fontSize: (80),
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        if (userInput == '') {
+                          Fluttertoast.showToast(
+                              msg: "All Cleared",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.TOP,
+                              timeInSecForIosWeb: 3,
+                              backgroundColor: Colors.black26,
+                              textColor: Colors.black,
+                              fontSize: 16.0
+                          );
+                        }
+                        else {
+                          String s = userInput.toString();
+                          s = s.substring(0, s.length - 1);
+                          Result = s;
+                          setState(() {
+                            userInput = s;
+                          });
+                        }
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        'C',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
                     ),
-                    onPressed: () {
-                     calculation('0');
-                    },
-                  ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('+');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '+',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('.');
-                  },
-                  shape: CircleBorder(),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('7');
+                      },
+                      shape: CircleBorder(
+                          side: BorderSide(color: Colors.black)
 
-                  color: Colors.blue,
-                  disabledColor: Colors
-                      .blue, //add this to your code            onPressed: () {},
-                  child: Text(
-                    '.',
-                    style: TextStyle(fontSize: 90, color: Colors.white),
-                  ),
+                      ),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '7',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('8');
+                      },
+                      shape: CircleBorder(
+                        side: BorderSide(color: Colors.black)
+                      ),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '8',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('9');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '9',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('-');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '−',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-                RaisedButton(
-                  onPressed: () {
-                    calculation('=');
-                  },
-                  shape: CircleBorder(),
-                  color: Colors.blue,
-                  disabledColor: Colors.blue,
-                  child: Text(
-                    '=',
-                    style: TextStyle(fontSize: 100, color: Colors.white),
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('4');
+                      },
+                      shape: CircleBorder(
+                        side: BorderSide(color: Colors.black)
+                      ),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '4',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('5');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                       elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '5',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('6');
+                      },
+                      shape: CircleBorder(
+                        side: BorderSide(color: Colors.black)
+                      ),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '6',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('/');
+                      },
+                      shape: CircleBorder(
+                        side: BorderSide(color: Colors.black)
+                      ),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '/',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          )
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('1');
+                      },
+                      shape: CircleBorder(side:BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '1',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('2');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '2',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('3');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '3',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('×');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '×',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ButtonTheme(
+                      minWidth: 190.0,
+                      height: (70),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(color: Colors.black)),
+                      child: RaisedButton(
+                        elevation: 10.0,
+                        hoverColor: Colors.green,
+                        color: Colors.black26,
+                        child: Text(
+                          "0",
+                          style: TextStyle(
+                              fontSize: (55),
+                              color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () {
+                          calculation('0');
+                        },
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('.');
+                      },
+                      shape: CircleBorder(side: BorderSide(color: Colors.black)),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors
+                          .blue,
+                      //add this to your code            onPressed: () {},
+                      child: Text(
+                        '.',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(8),
+                      onPressed: () {
+                        calculation('=');
+                      },
+                      shape: CircleBorder(
+                        side: BorderSide(color: Colors.black)
+                      ),
+                      elevation: 10,
+                      color: Colors.black26,
+                      disabledColor: Colors.blue,
+                      child: Text(
+                        '=',
+                        style: TextStyle(fontSize: 55, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              )
 
-          // IconButton(
-          //   onPressed: ,
-          //   icon: Icon(
-          //     Icons.add,
-          //     size: 200,
-          //   ), // change it to sign-in
-          // )
-        ],
-      ),
-    );
+              // IconButton(
+              //   onPressed: ,
+              //   icon: Icon(
+              //     Icons.add,
+              //     size: 200,
+              //   ), // change it to sign-in
+              // )
+            ],
+          ),
+        );
+      }
+      );
   }
   //Calculator logic
   String doesContainDecimal(dynamic result) {
