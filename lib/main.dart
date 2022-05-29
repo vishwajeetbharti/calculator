@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sizer/sizer.dart';
-import 'package:provider/provider.dart';
-import 'package:calculator/Theme/Theme_User.dart';
-
-import 'Theme_provider/Theme_provider.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 void main() {
   runApp(MyApp());
 }
@@ -13,20 +10,21 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: (context) => ThemeProvider(),
-    builder: (context, _) {
-      final themeProvider = Provider.of<ThemeProvider>(context);
-
-      return MaterialApp(
-        title: 'Calculator',
-        themeMode: themeProvider.themeMode,
-        theme: MyThemes.lightTheme,
-        darkTheme: MyThemes.darkTheme,
-        home: MyHomePage(),
-      );
-    },
-  );
+  Widget build(BuildContext context) {
+    return Sizer(
+      builder: (context,orientation,deviceType){
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Calculator',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: MyHomePage(),
+        );
+      }
+    );
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -50,17 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context,orientation,deviceType) {
-        // bool _isOn = false;
-        //
-        // void toggle() {
-        //   setState(() => _isOn = !_isOn);
-        // }
         return Scaffold(
           appBar: AppBar(
               title: Text('Calculator'),
-              actions: [
-                ChangeThemeButtonWidget(),
-              ]
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -100,9 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text(
                           "AC",
                           style: TextStyle(
-                              fontSize: (55),
+                              fontSize: (30),
                               color: Colors.white,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {
                           setState(() {
