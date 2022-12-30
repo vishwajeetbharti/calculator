@@ -720,7 +720,7 @@ class _MyHomePageState extends State<MyHomePage> {
       finalResult = doesContainDecimal(result);
     } else if (btnText == '.') {
       if (!result.toString().contains('.')) {
-        result = result.toString() + '.';
+        result = result + '.';
       }
       finalResult = result;
       print(finalResult);
